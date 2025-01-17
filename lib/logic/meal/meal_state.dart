@@ -18,3 +18,10 @@ final class ErrorGetMealState extends MealState {
   final String error ;
   ErrorGetMealState(this.error);
 }
+
+final class LoadingDeleteMealState extends MealState {}
+final class SuccessfullyDeleteMealState extends MealState {}
+final class ErrorDeleteMealState extends MealState {
+  final String error ;
+  ErrorDeleteMealState(this.error);
+}

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import '../../model/exercise_model.dart';
 import '../../shared/constants/constants.dart';
 
@@ -50,7 +49,8 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     await supaBase
         .from("Exercise")
         .select()
-        .eq("user_id", userId).eq("day", day)
+        .eq("user_id", userId)
+        .eq("day", day)
         .then((value) {
       exerciseData = value;
       emit(SuccessfullyGetExerciseState());
@@ -59,5 +59,12 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     });
   }
 
-
+  void deleteExercise({required int id}) {
+    emit(LoadingDeleteExerciseState());
+    supaBase.from("Exercise").delete().eq("id", id).then((value) {
+      emit(SuccessfullyDeleteExerciseState());
+    }).catchError((error) {
+      emit(ErrorDeleteExerciseState(error.toString()));
+    });
+  }
 }

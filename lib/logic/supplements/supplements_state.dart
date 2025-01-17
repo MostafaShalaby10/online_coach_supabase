@@ -17,3 +17,9 @@ final class ErrorGetSupplementsState extends SupplementsState {
   final String error ;
   ErrorGetSupplementsState(this.error);
 }
+final class LoadingDeleteSupplementsState extends SupplementsState {}
+final class SuccessfullyDeleteSupplementsState extends SupplementsState {}
+final class ErrorDeleteSupplementsState extends SupplementsState {
+  final String error ;
+  ErrorDeleteSupplementsState(this.error);
+}

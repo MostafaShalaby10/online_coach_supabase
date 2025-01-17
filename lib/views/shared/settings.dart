@@ -44,6 +44,7 @@ class Settings extends StatelessWidget {
                         children: [
                           Center(
                               child: text(text: "Contact Coach", fontSize: 24)),
+                          if(!isAdmin)
                           Row(
                             children: [
                               Expanded(

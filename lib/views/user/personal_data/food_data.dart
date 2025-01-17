@@ -172,8 +172,6 @@ class _FoodDataState extends State<FoodData> {
                                             ),
                                           )),
                                 ),
-    
-                              //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                               text(text: "Lunch Options :)"),
                               DropdownMenu(
                                   hintText: "Choose your favorite food",
@@ -477,24 +475,27 @@ class _FoodDataState extends State<FoodData> {
                                       label: "Save",
                                       fontSize: 20, function: () {
                                       if (formKey.currentState!.validate()) {
-                                        setPersonalData.addAll({
-                                          "forbiddenfood":
+                                        if(breakfastFood.isNotEmpty || lunchFood.isNotEmpty || fruitFood.isNotEmpty || snacksFood.isNotEmpty || vegetablesFood.isNotEmpty)
+                                          {
+                                            setPersonalData.addAll({
+                                              "forbiddenfood":
                                               forbiddenFoodController.text,
-                                          "mealnumber":
+                                              "mealnumber":
                                               mealsNumberController.text,
-                                          "firstmealtime":
+                                              "firstmealtime":
                                               firstMealTimeController.text,
-                                          "trainingtime":
+                                              "trainingtime":
                                               trainingTimeController.text,
-                                          "favbreakfast": breakfastFood,
-                                          "favlunch": lunchFood,
-                                          "favfruit": fruitFood,
-                                          "favsnacks": snacksFood,
-                                          "favvegetables": vegetablesFood,
-                                        });
-                                        UserPersonalDataCubit.get(context)
-                                            .addPersonalData(
+                                              "favbreakfast": breakfastFood,
+                                              "favlunch": lunchFood,
+                                              "favfruit": fruitFood,
+                                              "favsnacks": snacksFood,
+                                              "favvegetables": vegetablesFood,
+                                            });
+                                            UserPersonalDataCubit.get(context)
+                                                .addPersonalData(
                                                 data: setPersonalData);
+                                          }
                                       }
                                     })
                                   : Center(

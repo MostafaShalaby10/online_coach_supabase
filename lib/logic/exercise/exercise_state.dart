@@ -19,9 +19,9 @@ final class ErrorGetExerciseState extends ExerciseState {
 }
 
 
-final class LoadingGetNumberOfExerciseDaysState extends ExerciseState {}
-final class SuccessfullyGetNumberOfExerciseDaysState extends ExerciseState {}
-final class ErrorGetNumberOfExerciseDaysState extends ExerciseState {
+final class LoadingDeleteExerciseState extends ExerciseState {}
+final class SuccessfullyDeleteExerciseState extends ExerciseState {}
+final class ErrorDeleteExerciseState extends ExerciseState {
   final String error ;
-  ErrorGetNumberOfExerciseDaysState(this.error);
+  ErrorDeleteExerciseState(this.error);
 }

@@ -136,10 +136,24 @@ class _ShowFoodState extends State<ShowFood> {
                                                                     [
                                                                     "type"] ==
                                                                 "breakfast")
-                                                              text(
-                                                                  text: MealCubit.get(context).breakfastMealData[index]
-                                                                      [
-                                                                      "meal"])
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: text(
+                                                                      textAlign: TextAlign.start,
+                                                                        text: MealCubit.get(context).breakfastMealData[index]
+                                                                            [
+                                                                            "meal"]),
+                                                                  ),
+                                                                  if(widget.isAdmin)
+                                                                  IconButton(onPressed: (){
+                                                                    MealCubit.get(context).deleteFood(id: MealCubit.get(context).breakfastMealData[index]
+                                                                    [
+                                                                    "id"]);
+                                                                  }, icon: Icon(Icons.delete_forever_outlined , color: Colors.red,)),
+                                                                ],
+                                                              )
                                                           ],
                                                         ),
                                                 separatorBuilder:
@@ -156,10 +170,7 @@ class _ShowFoodState extends State<ShowFood> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Image(
-                                                    image: CachedNetworkImageProvider(
-                                                        "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
-                                                Center(
+                                                   Center(
                                                   child: text(
                                                       text:
                                                           "There is no breakfast yet\n Waittttt!!",
@@ -183,11 +194,25 @@ class _ShowFoodState extends State<ShowFood> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            text(
-                                                                text: MealCubit.get(context)
-                                                                        .lunchMealData[index]
-                                                                    [
-                                                                    "meal"])
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                              children: [
+                                                                Expanded(
+                                                                  child: text(
+                                                                    textAlign: TextAlign.start,
+                                                                      text: MealCubit.get(context)
+                                                                              .lunchMealData[index]
+                                                                          [
+                                                                          "meal"]),
+                                                                ),
+                                                                if(widget.isAdmin)
+                                                                IconButton(onPressed: (){
+                                                                  MealCubit.get(context).deleteFood(id: MealCubit.get(context).breakfastMealData[index]
+                                                                  [
+                                                                  "id"]);
+                                                                }, icon: Icon(Icons.delete_forever_outlined , color: Colors.red,)),
+                                                              ],
+                                                            )
                                                           ],
                                                         ),
                                                 separatorBuilder:
@@ -205,10 +230,7 @@ class _ShowFoodState extends State<ShowFood> {
                                                 MainAxisAlignment
                                                     .center,
                                             children: [
-                                              Image(
-                                                  image: CachedNetworkImageProvider(
-                                                      "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
-                                              Center(
+                                                Center(
                                                 child: text(
                                                     text:
                                                         "There is no lunch yet\n Waittttt!!",
@@ -232,11 +254,24 @@ class _ShowFoodState extends State<ShowFood> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            text(
-                                                                text: MealCubit.get(context)
-                                                                        .dinnerMealData[index]
-                                                                    [
-                                                                    "meal"])
+                                                            Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: text(
+                                                                    textAlign: TextAlign.start,
+                                                                      text: MealCubit.get(context)
+                                                                              .dinnerMealData[index]
+                                                                          [
+                                                                          "meal"]),
+                                                                ),
+                                                                if(widget.isAdmin)
+                                                                IconButton(onPressed: (){
+                                                                  MealCubit.get(context).deleteFood(id: MealCubit.get(context).breakfastMealData[index]
+                                                                  [
+                                                                  "id"]);
+                                                                }, icon: Icon(Icons.delete_forever_outlined , color: Colors.red,)),
+                                                              ],
+                                                            )
                                                           ],
                                                         ),
                                                 separatorBuilder:
@@ -253,10 +288,7 @@ class _ShowFoodState extends State<ShowFood> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Image(
-                                                    image: CachedNetworkImageProvider(
-                                                        "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
-                                                Center(
+                                                   Center(
                                                   child: text(
                                                       text:
                                                           "There is no dinner yet\n Waittttt!!",
@@ -290,7 +322,14 @@ class _ShowFoodState extends State<ShowFood> {
               ),
             );
           },
-          listener: (context, state) {}),
+          listener: (context, state) {
+            if (state is SuccessfullyDeleteMealState) {
+              toastMSG(text: "Deleted Successfully", color: Colors.green) ;
+              moveBackWord(context: context);
+            }  else if (state is ErrorDeleteMealState) {
+              toastMSG(text: state.error.toString(), color: Colors.red) ;
+            }
+          }),
     );
   }
 }

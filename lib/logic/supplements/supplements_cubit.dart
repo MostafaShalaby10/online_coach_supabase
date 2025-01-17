@@ -49,4 +49,14 @@ class SupplementsCubit extends Cubit<SupplementsState> {
       emit(ErrorGetSupplementsState(error.toString()));
     });
   }
+
+
+  void deleteSupplements({required int id}) {
+    emit(LoadingDeleteSupplementsState());
+    supaBase.from("Supplements").delete().eq("id", id).then((value) {
+      emit(SuccessfullyDeleteSupplementsState());
+    }).catchError((error) {
+      emit(ErrorDeleteSupplementsState(error.toString()));
+    });
+  }
 }

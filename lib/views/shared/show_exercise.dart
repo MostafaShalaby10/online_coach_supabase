@@ -34,133 +34,156 @@ class ShowExercise extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: Colors.black,
               ),
-              body: state is! LoadingGetExerciseState? Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            if (ExerciseCubit.get(context)
-                                .exerciseData
-                                .isNotEmpty)
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Image(
-                                        image: NetworkImage(
-                                            "https://i.pinimg.com/736x/6d/41/a9/6d41a94822d76e4af100c2e5ac80787b.jpg")),
-                                    verticalSpace(space: 20),
-                                    Expanded(
-                                      child: ListView.separated(
-                                          itemBuilder: (context, index) =>
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          HexColor("#292929"),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Row(
-                                                      children: [
-                                                        Expanded(
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              text(
-                                                                  text: ExerciseCubit.get(context)
-                                                                              .exerciseData
-                                                                          [
-                                                                          index]
-                                                                      ["label"],
-                                                                  fontSize: 24,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                              text(
-                                                                  fontColor:
-                                                                      Colors
-                                                                          .grey,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  text:
-                                                                      'Set : ${ExerciseCubit.get(context).exerciseData[index]["Set"]}   .     REPS : ${ExerciseCubit.get(context).exerciseData[index]["reps"]}'),
-                                                            ],
-                                                          ),
+              body: state is! LoadingGetExerciseState
+                  ? Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          if (ExerciseCubit.get(context)
+                              .exerciseData
+                              .isNotEmpty)
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Image(
+                                      image: NetworkImage(
+                                          "https://i.pinimg.com/736x/6d/41/a9/6d41a94822d76e4af100c2e5ac80787b.jpg")),
+                                  verticalSpace(space: 20),
+                                  Expanded(
+                                    child: ListView.separated(
+                                        itemBuilder: (context, index) =>
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: HexColor("#292929"),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            text(
+                                                                text: ExerciseCubit.get(
+                                                                            context)
+                                                                        .exerciseData[index]
+                                                                    ["label"],
+                                                                fontSize: 24,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                            text(
+                                                                fontColor:
+                                                                    Colors.grey,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                text:
+                                                                    'Set : ${ExerciseCubit.get(context).exerciseData[index]["sets"]}   .     REPS : ${ExerciseCubit.get(context).exerciseData[index]["reps"]}'),
+                                                          ],
                                                         ),
+                                                      ),
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            launchUrlString(ExerciseCubit
+                                                                        .get(
+                                                                            context)
+                                                                    .exerciseData[
+                                                                index]["link"]);
+                                                          },
+                                                          icon: CircleAvatar(
+                                                            backgroundColor:
+                                                                Colors.grey,
+                                                            child: const Icon(
+                                                              FontAwesomeIcons
+                                                                  .youtube,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 24,
+                                                            ),
+                                                          )),
+                                                      if (isAdmin)
                                                         IconButton(
                                                             onPressed: () {
-                                                              launchUrlString(ExerciseCubit
-                                                                          .get(
-                                                                              context)
-                                                                      .exerciseData
-                                                                  [
-                                                                  index]["link"]);
+                                                              ExerciseCubit.get(
+                                                                      context)
+                                                                  .deleteExercise(
+                                                                      id: ExerciseCubit.get(context)
+                                                                              .exerciseData[index]
+                                                                          [
+                                                                          "id"]);
                                                             },
-                                                            icon: CircleAvatar(
-                                                              backgroundColor:
-                                                                  Colors.grey,
-                                                              child: const Icon(
-                                                                FontAwesomeIcons.youtube,
-                                                                color: Colors
-                                                                    .white,
-                                                                size: 24,
-                                                              ),
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .delete_forever_outlined,
+                                                              color: Colors.red,
                                                             )),
-                                                      ],
-                                                    ),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
-                                          separatorBuilder: (context, index) =>
-                                              verticalSpace(space: 10),
-                                          itemCount: ExerciseCubit.get(context)
-                                              .exerciseData
-                                              .length),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            if (ExerciseCubit.get(context).exerciseData.isEmpty)
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image(
-                                      image: CachedNetworkImageProvider(
-                                          "https://i.pinimg.com/736x/dd/d6/27/ddd62790a7a8be6b4bd4fa4160574eb4.jpg")),
-                                  Center(
-                                    child: text(
-                                        text:
-                                            "There is no exercises yet\n Waittttt!!",
-                                        fontSize: 25,
-                                        fontColor: secondaryColor),
+                                            ),
+                                        separatorBuilder: (context, index) =>
+                                            verticalSpace(space: 10),
+                                        itemCount: ExerciseCubit.get(context)
+                                            .exerciseData
+                                            .length),
                                   ),
                                 ],
                               ),
-                            if (isAdmin)
-                              defaultButton(context,
-                                  label: "Add Exercise",
-                                  fontSize: 20, function: () {
-                                moveForward(
-                                    context: context,
-                                    page: AddExercise(
-                                      id: id,
-                                      day: day,
-                                    ));
-                              }),
-                          ],
-                        ),
-                      ):Center(child: CircularProgressIndicator()),
+                            ),
+                          if (ExerciseCubit.get(context).exerciseData.isEmpty)
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image(
+                                    image: CachedNetworkImageProvider(
+                                        "https://i.pinimg.com/736x/dd/d6/27/ddd62790a7a8be6b4bd4fa4160574eb4.jpg")),
+                                Center(
+                                  child: text(
+                                      text:
+                                          "There is no exercises yet\n Waittttt!!",
+                                      fontSize: 25,
+                                      fontColor: secondaryColor),
+                                ),
+                              ],
+                            ),
+                          if (isAdmin)
+                            defaultButton(context,
+                                label: "Add Exercise",
+                                fontSize: 20, function: () {
+                              moveForward(
+                                  context: context,
+                                  page: AddExercise(
+                                    id: id,
+                                    day: day,
+                                  ));
+                            }),
+                        ],
+                      ),
+                    )
+                  : Center(child: CircularProgressIndicator()),
             );
           },
-          listener: (context, state) {}),
+          listener: (context, state) {
+            if(state is SuccessfullyDeleteExerciseState)
+              {
+                toastMSG(text: "Deleted Successfully", color: Colors.green);
+                moveBackWord(context: context);
+              }else   if(state is ErrorDeleteExerciseState)
+            {
+              toastMSG(text: state.error.toString(), color: Colors.red);
+            }
+          }),
     );
   }
 }

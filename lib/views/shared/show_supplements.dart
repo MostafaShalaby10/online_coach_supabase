@@ -34,27 +34,38 @@ class ShowSupplements extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: ListView.builder(
-                                    itemBuilder: (context, index) => Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                    itemBuilder: (context, index) => Stack(
+alignment: Alignment.topRight,
                                       children: [
-                                        Center(
-                                          child: text(
-                                              text: SupplementsCubit.get(
-                                                  context)
-                                                  .supplementsData
-                                              [index]
-                                              ["supplementsName"],
-                                              fontSize: 25,
-                                              fontColor:HexColor("#26619C"),
-                                              fontWeight:
-                                              FontWeight.bold),
+                                        if(isAdmin)
+                                        IconButton(onPressed: (){
+                                          SupplementsCubit.get(context).deleteSupplements(id: SupplementsCubit.get(context).supplementsData[index]
+                                          [
+                                          "id"]);
+                                        }, icon: Icon(Icons.delete_forever_outlined , color: Colors.red,)),
+                                        Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Center(
+                                              child: text(
+                                                  text: SupplementsCubit.get(
+                                                      context)
+                                                      .supplementsData
+                                                  [index]
+                                                  ["supplementsName"],
+                                                  fontSize: 25,
+                                                  fontColor:HexColor("#26619C"),
+                                                  fontWeight:
+                                                  FontWeight.bold),
+                                            ),
+                                            text(
+                                                text: SupplementsCubit.get(
+                                                    context)
+                                                    .supplementsData
+                                                [index]["times"]),
+                                          ],
                                         ),
-                                        text(
-                                            text: SupplementsCubit.get(
-                                                context)
-                                                .supplementsData
-                                            [index]["times"]),
                                       ],
                                     ),
                               
@@ -98,7 +109,14 @@ class ShowSupplements extends StatelessWidget {
                       ): Center(child: CircularProgressIndicator()),
             );
           },
-          listener: (context, state) {}),
+          listener: (context, state) {
+            if (state is SuccessfullyDeleteSupplementsState) {
+              toastMSG(text: "Deleted Successfully", color: Colors.green) ;
+              moveBackWord(context: context);
+            }  else if (state is ErrorDeleteSupplementsState) {
+              toastMSG(text: state.error.toString(), color: Colors.red) ;
+            }
+          }),
     );
   }
 }

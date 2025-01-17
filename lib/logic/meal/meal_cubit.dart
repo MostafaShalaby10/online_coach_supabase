@@ -64,4 +64,13 @@ class MealCubit extends Cubit<MealState> {
       emit(ErrorGetMealState(error.toString()));
     });
   }
+
+  void deleteFood({required int id}) {
+    emit(LoadingDeleteMealState());
+    supaBase.from("Meals").delete().eq("id", id).then((value) {
+      emit(SuccessfullyDeleteMealState());
+    }).catchError((error) {
+      emit(ErrorDeleteMealState(error.toString()));
+    });
+  }
 }
