@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:online_coach_supabase/main.dart';
 import 'package:online_coach_supabase/shared/shared_preferences/shared_preferences.dart';
+import 'package:online_coach_supabase/views/shared/no_internet.dart';
 import 'package:online_coach_supabase/views/user/personal_data/personal_data.dart';
 import 'package:online_coach_supabase/views/shared/settings.dart';
 import 'package:online_coach_supabase/views/user/tips_page.dart';
@@ -8,13 +10,18 @@ import '../../shared/components/components.dart';
 import '../shared/days.dart';
 import '../shared/show_supplements.dart';
 
-class UserHomePage extends StatelessWidget {
+class UserHomePage extends StatefulWidget {
   // final int id ;
   const UserHomePage({super.key});
 
   @override
+  State<UserHomePage> createState() => _UserHomePageState();
+}
+
+class _UserHomePageState extends State<UserHomePage> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
         actions: [
           Padding(

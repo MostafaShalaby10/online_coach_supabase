@@ -28,3 +28,6 @@ final class ErrorGetSpecificUsersState extends AUTHState {
   final String error ;
   ErrorGetSpecificUsersState(this.error);
 }
+
+
+final class SuccessfullyCheckConnection extends AUTHState {}

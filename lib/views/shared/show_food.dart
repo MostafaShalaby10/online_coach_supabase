@@ -119,94 +119,42 @@ class _ShowFoodState extends State<ShowFood> {
                               child: Column(
                                 children: [
                                   if (breakfastFlag)
-                                    Expanded(
-                                      child: MealCubit.get(context)
-                                              .breakfastMealData
-                                              .isNotEmpty
-                                          ? Expanded(
-                                              child: ListView.separated(
-                                                  itemBuilder:
-                                                      (context, index) =>
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              if (MealCubit.get(context)
-                                                                          .breakfastMealData[index]
-                                                                      [
-                                                                      "type"] ==
-                                                                  "breakfast")
-                                                                text(
-                                                                    text: MealCubit.get(context).breakfastMealData[index]
-                                                                        [
-                                                                        "meal"])
-                                                            ],
-                                                          ),
-                                                  separatorBuilder:
-                                                      (context, index) =>
-                                                          verticalSpace(
-                                                              space: 10),
-                                                  itemCount:
-                                                      MealCubit.get(context)
-                                                          .breakfastMealData
-                                                          .length),
-                                            )
-                                          : SingleChildScrollView(
-                                            child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Image(
-                                                      image: CachedNetworkImageProvider(
-                                                          "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
-                                                  Center(
-                                                    child: text(
-                                                        text:
-                                                            "There is no breakfast yet\n Waittttt!!",
-                                                        fontSize: 25,
-                                                        fontColor:
-                                                            secondaryColor),
-                                                  ),
-                                                ],
-                                              ),
-                                          ),
-                                    ),
-                                  if (lunchFlag)
-                                    Expanded(
-                                      child: MealCubit.get(context)
-                                              .lunchMealData
-                                              .isNotEmpty
-                                          ? Expanded(
-                                              child: ListView.separated(
-                                                  itemBuilder:
-                                                      (context, index) =>
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
+                                    MealCubit.get(context)
+                                            .breakfastMealData
+                                            .isNotEmpty
+                                        ? Expanded(
+                                            child: ListView.separated(
+                                                itemBuilder:
+                                                    (context, index) =>
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            if (MealCubit.get(context)
+                                                                        .breakfastMealData[index]
+                                                                    [
+                                                                    "type"] ==
+                                                                "breakfast")
                                                               text(
-                                                                  text: MealCubit.get(context)
-                                                                          .lunchMealData[index]
+                                                                  text: MealCubit.get(context).breakfastMealData[index]
                                                                       [
                                                                       "meal"])
-                                                            ],
-                                                          ),
-                                                  separatorBuilder:
-                                                      (context, index) =>
-                                                          verticalSpace(
-                                                              space: 10),
-                                                  itemCount:
-                                                      MealCubit.get(context)
-                                                          .lunchMealData
-                                                          .length),
-                                            )
-                                          : SingleChildScrollView(
-                                            child: Column(
+                                                          ],
+                                                        ),
+                                                separatorBuilder:
+                                                    (context, index) =>
+                                                        verticalSpace(
+                                                            space: 10),
+                                                itemCount:
+                                                    MealCubit.get(context)
+                                                        .breakfastMealData
+                                                        .length),
+                                          )
+                                        : SingleChildScrollView(
+                                          child: Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Image(
                                                     image: CachedNetworkImageProvider(
@@ -214,65 +162,111 @@ class _ShowFoodState extends State<ShowFood> {
                                                 Center(
                                                   child: text(
                                                       text:
-                                                          "There is no lunch yet\n Waittttt!!",
+                                                          "There is no breakfast yet\n Waittttt!!",
                                                       fontSize: 25,
                                                       fontColor:
                                                           secondaryColor),
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                    ),
-                                  if (dinnerFlag)
-                                    Expanded(
-                                      child: MealCubit.get(context)
-                                              .dinnerMealData
-                                              .isNotEmpty
-                                          ? Expanded(
-                                              child: ListView.separated(
-                                                  itemBuilder:
-                                                      (context, index) =>
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              text(
-                                                                  text: MealCubit.get(context)
-                                                                          .dinnerMealData[index]
-                                                                      [
-                                                                      "meal"])
-                                                            ],
-                                                          ),
-                                                  separatorBuilder:
-                                                      (context, index) =>
-                                                          verticalSpace(
-                                                              space: 10),
-                                                  itemCount:
-                                                      MealCubit.get(context)
-                                                          .dinnerMealData
-                                                          .length),
-                                            )
-                                          : SingleChildScrollView(
-                                            child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Image(
-                                                      image: CachedNetworkImageProvider(
-                                                          "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
-                                                  Center(
-                                                    child: text(
-                                                        text:
-                                                            "There is no dinner yet\n Waittttt!!",
-                                                        fontSize: 25,
-                                                        fontColor:
-                                                            secondaryColor),
-                                                  ),
-                                                ],
+                                        ),
+                                  if (lunchFlag)
+                                    MealCubit.get(context)
+                                            .lunchMealData
+                                            .isNotEmpty
+                                        ? Expanded(
+                                            child: ListView.separated(
+                                                itemBuilder:
+                                                    (context, index) =>
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            text(
+                                                                text: MealCubit.get(context)
+                                                                        .lunchMealData[index]
+                                                                    [
+                                                                    "meal"])
+                                                          ],
+                                                        ),
+                                                separatorBuilder:
+                                                    (context, index) =>
+                                                        verticalSpace(
+                                                            space: 10),
+                                                itemCount:
+                                                    MealCubit.get(context)
+                                                        .lunchMealData
+                                                        .length),
+                                          )
+                                        : SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .center,
+                                            children: [
+                                              Image(
+                                                  image: CachedNetworkImageProvider(
+                                                      "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
+                                              Center(
+                                                child: text(
+                                                    text:
+                                                        "There is no lunch yet\n Waittttt!!",
+                                                    fontSize: 25,
+                                                    fontColor:
+                                                        secondaryColor),
                                               ),
+                                            ],
                                           ),
-                                    ),
+                                        ),
+                                  if (dinnerFlag)
+                                    MealCubit.get(context)
+                                            .dinnerMealData
+                                            .isNotEmpty
+                                        ? Expanded(
+                                            child: ListView.separated(
+                                                itemBuilder:
+                                                    (context, index) =>
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            text(
+                                                                text: MealCubit.get(context)
+                                                                        .dinnerMealData[index]
+                                                                    [
+                                                                    "meal"])
+                                                          ],
+                                                        ),
+                                                separatorBuilder:
+                                                    (context, index) =>
+                                                        verticalSpace(
+                                                            space: 10),
+                                                itemCount:
+                                                    MealCubit.get(context)
+                                                        .dinnerMealData
+                                                        .length),
+                                          )
+                                        : SingleChildScrollView(
+                                          child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image(
+                                                    image: CachedNetworkImageProvider(
+                                                        "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
+                                                Center(
+                                                  child: text(
+                                                      text:
+                                                          "There is no dinner yet\n Waittttt!!",
+                                                      fontSize: 25,
+                                                      fontColor:
+                                                          secondaryColor),
+                                                ),
+                                              ],
+                                            ),
+                                        ),
                                   ////Error here when keyboard is Enabled
                                   if (widget.isAdmin)
                                     defaultButton(context,

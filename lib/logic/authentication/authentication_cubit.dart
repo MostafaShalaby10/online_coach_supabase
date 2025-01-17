@@ -2,11 +2,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_coach_supabase/shared/shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../shared/components/components.dart';
 import '../../shared/constants/constants.dart';
 
 part 'authentication_state.dart';
 
-class AUTHCubit extends Cubit<AUTHState> {
+class AUTHCubit extends Cubit<AUTHState>  {
   AUTHCubit() : super(LoginInitial());
 
   static AUTHCubit get(context) => BlocProvider.of(context);
@@ -59,5 +60,4 @@ class AUTHCubit extends Cubit<AUTHState> {
     });
   }
 
-// End of class
 }

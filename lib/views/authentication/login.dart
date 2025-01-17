@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:online_coach_supabase/shared/shared_preferences/shared_preferences.dart';
 import 'package:online_coach_supabase/views/admin/admin_home_page.dart';
+import 'package:online_coach_supabase/views/shared/no_internet.dart';
 import 'package:online_coach_supabase/views/user/user_home_page.dart';
 
 import '../../logic/authentication/authentication_cubit.dart';
@@ -20,8 +24,10 @@ class _LoginState extends State<Login> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create: (context) => AUTHCubit(),
       child: BlocConsumer<AUTHCubit, AUTHState>(
@@ -92,7 +98,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 )),
-              ),
+          ),
           listener: (context, state) {
             if (state is SuccessfullyLoginState) {
 

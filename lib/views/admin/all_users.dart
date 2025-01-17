@@ -133,7 +133,7 @@ class AllUsers extends StatelessWidget {
                                                     launchUrlString(
                                                         "whatsapp://send?text=&phone=+2${UserDataCubit.get(context).usersData[index]['phone']}");
                                                   },
-                                                  icon: Icon(FontAwesomeIcons.whatsapp))
+                                                  icon: Icon(FontAwesomeIcons.whatsapp , color: Colors.green,))
 
                                             ],
                                           ),

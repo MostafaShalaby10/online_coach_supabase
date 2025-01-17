@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_coach_supabase/logic/user_data/user_data_cubit.dart';
 import 'package:online_coach_supabase/shared/components/components.dart';
 import 'package:online_coach_supabase/views/admin/show_personal_data.dart';
@@ -29,6 +30,7 @@ class _SearchState extends State<Search> {
               child: Column(
                 children: [
                   TextField(
+                    style: TextStyle(color: Colors.white),
                     onChanged: (value) {
                       UserDataCubit.get(context).searchClient(name: value);
                     },
@@ -99,7 +101,7 @@ class _SearchState extends State<Search> {
                                               launchUrlString(
                                                   "whatsapp://send?text=&phone=+2${UserDataCubit.get(context).usersData[index]['phone']}");
                                             },
-                                            icon: Icon(Icons.call)),
+                                            icon: Icon(FontAwesomeIcons.whatsapp ,color: Colors.green,)),
                                       ],
                                     ),
                                   ),
